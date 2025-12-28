@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portofolio Zidan</title>
+
+  <style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    color: white;
+    background: linear-gradient(270deg,#000,#111,#000);
+    background-size: 400% 400%;
+    animation: bgMove 10s infinite ease;
+  }
+
+  @keyframes bgMove {
+    0% {background-position: 0% 50%;}
+    50% {background-position: 100% 50%;}
+    100% {background-position: 0% 50%;}
+  }
+
+  /* HEADER */
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0,0,0,.85);
+    border-bottom: 1px solid rgba(0,255,255,.2);
+    z-index: 100;
+    backdrop-filter: blur(6px);
+  }
+
+  .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: cyan;
+  }
+
+  nav a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: .3s;
+  }
+
+  nav a:hover {
+    color: cyan;
+    text-shadow: 0 0 10px cyan;
+  }
+
+  /* SECTIONS */
+  .section {
+    min-height: 100vh;
+    padding: 140px 60px 80px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: 1s;
+  }
+
+  .section.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .section-title {
+    font-size: 2.7rem;
+    color: cyan;
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  /* HERO */
+  .hero {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-title {
+    font-size: 3.6rem;
+    font-weight: 800;
+    animation: fadeUp 1.2s forwards;
+  }
+
+  .hero-title span {
+    background: linear-gradient(90deg,cyan,#00ff99);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glowText 2s infinite alternate;
+  }
+
+  .hero-sub {
+    margin-top: 18px;
+    font-size: 1.2rem;
+    color: #ccc;
+    max-width: 700px;
+    margin-inline: auto;
+    animation: fadeUp 1.6s forwards;
+  }
+
+  .hero-btn {
+    margin-top: 40px;
+    display: inline-block;
+    padding: 18px 55px;
+    border-radius: 50px;
+    background: linear-gradient(90deg,cyan,#00ff99);
+    color: #000;
+    font-weight: bold;
+    box-shadow: 0 0 25px rgba(0,255,255,.6);
+    transition: .4s;
+    animation: fadeUp 2s forwards;
+  }
+
+  .hero-btn:hover {
+    transform: scale(1.12);
+    box-shadow: 0 0 45px cyan;
+  }
+
+  @keyframes fadeUp {
+    from {opacity: 0; transform: translateY(40px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  @keyframes glowText {
+    from {text-shadow: 0 0 10px cyan;}
+    to {text-shadow: 0 0 30px cyan;}
+  }
+
+  /* PROFIL */
+  .profile-layout {
+    display: flex;
+    justify-content: space-between;
+    gap: 70px;
+    align-items: center;
+  }
+
+  .profile-info { flex: 1; }
+
+  .profile-name {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    color: cyan;
+  }
+
+  .profile-table {
+    display: grid;
+    gap: 16px;
+  }
+
+  .profile-table div {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    background: #111;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid rgba(0,255,255,.15);
+  }
+
+  .profile-table span {
+    color: cyan;
+    font-weight: bold;
+  }
+
+  .profile-table p {
+    color: #ccc;
+  }
+
+  .profile-photo img {
+    width: 320px;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 18px;
+    transform: translateY(-30px);
+    transition: .4s;
+    filter:
+      drop-shadow(0 0 15px rgba(0,255,180,.25))
+      drop-shadow(0 0 40px rgba(0,255,180,.15));
+  }
+
+  .profile-photo img:hover {
+    transform: translateY(-40px) scale(1.03);
+  }
+
+  /* PROJECT */
+  .project-container {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 30px;
+  }
+
+  .project-card {
+    background: #111;
+    border-radius: 18px;
+    overflow: hidden;
+    text-align: center;
+    transition: .4s;
+    border: 1px solid rgba(0,255,255,.15);
+  }
+
+  .project-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .project-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 0 25px cyan;
+  }
+
+  .project-card h3 {
+    color: cyan;
+    margin: 15px 0 5px;
+  }
+
+  .project-card p {
+    color: #ccc;
+    font-size: .9rem;
+    padding: 0 15px 18px;
+  }
+
+  /* GALERI */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 22px;
+  }
+
+  .gallery-card {
+    background:#111;
+    border-radius: 16px;
+    overflow: hidden;
+    transition: .4s;
+    border: 1px solid rgba(0,255,255,.15);
+  }
+
+  .gallery-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gallery-card p{
+    text-align:center;
+    padding:10px;
+    color:#ccc;
+  }
+
+  .gallery-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px cyan;
+  }
+
+  /* CONTACT */
+  .contact-card {
+    max-width: 420px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .contact-avatar {
+    width: 140px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 2px solid cyan;
+  }
+
+  .contact-address {
+    color: #aaa;
+    margin-bottom: 20px;
+  }
+
+  .contact-action {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+  }
+
+  .contact-btn {
+    padding: 14px 26px;
+    border-radius: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: .4s;
+  }
+
+  .contact-btn:hover {
+    transform: translateY(-6px) scale(1.08);
+    box-shadow: 0 0 25px currentColor;
+  }
+
+  .contact-btn.wa {
+    color: #22c55e;
+    border: 2px solid #22c55e;
+  }
+
+  .contact-btn.ig {
+    color: #f472b6;
+    border: 2px solid #f472b6;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 992px) {
+    header { padding: 18px 28px; }
+
+    .profile-layout { 
+      flex-direction: column-reverse;
+      text-align: center;
+    }
+
+    .project-container,
+    .gallery {
+      grid-template-columns: repeat(2,1fr);
+    }
+  }
+
+  @media (max-width: 576px) {
+    .section { padding: 130px 25px 70px; }
+
+    .hero-title { font-size: 2.6rem; }
+
+    .project-container,
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Muhammad Zaki Zahron</div>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#profil">Profil</a>
+    <a href="#project">Project</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section id="home" class="section hero show">
+  <div>
+    <h1 class="hero-title">Halo, Saya <span>Zaki</span></h1>
+    <p class="hero-sub">
+      Desainer Grafis Pemula yang belajar mendesain menggunakan Digital Art
+    </p>
+    <a href="#profil" class="hero-btn">Lihat Profil</a>
+  </div>
+</section>
+
+<section id="profil" class="section">
+  <h2 class="section-title">Profil</h2>
+
+  <div class="profile-layout">
+    <div class="profile-info">
+      <h2 class="profile-name">Data Diri</h2>
+
+      <div class="profile-table">
+        <div><span>Nama</span><p>Muhammad Zaki Zahron</p></div>
+        <div><span>Status</span><p>Mahasiswa</p></div>
+        <div><span>Hobby</span><p>Badminton,Voly,Catur,Bola</p></div>
+        <div><span>Minat</span><p>Animator, Desain, UI UX, Editor</p></div>
+      </div>
+    </div>
+
+    <div class="profile-photo">
+      <img src="gallery 1.jpg" alt="Foto Profil" />
+    </div>
+  </div>
+</section>
+
+<section id="project" class="section">
+  <h2 class="section-title">Project</h2>
+
+  <div class="project-container">
+
+    <div class="project-card">
+      <img src="screenshot 1.png" alt="Editor PowerPoint">
+      <h3>Tugas P19</h3>
+      <p>Ini adalah latihan tugas saya pada pertemuan ke 19.</p>
+    </div>
+
+    <div class="project-card">
+      <img src="screenshot 2.png" alt="Editor Video & Poster">
+      <h3>Tugas P9 E-Learning</h3>
+      <p>Ini adalah latihan tugas saya pada pertemuan ke 9 E-Learning.</p>
+    </div>
+
+    <div class="project-card">
+      <img src="screenshot 3.png" alt="Grafis Designer">
+      <h3>Tugas P10</h3>
+      <p>Ini adalah latihan tugas saya pada pertemuan ke 10.</p>
+    </div>
+
+    <div class="project-card">
+      <img src="Screenshot 4.png" alt="UI UX Designer">
+      <h3>Tugas UTS</h3>
+      <p>Ini adalah tugas projek saya ketika UTS.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="galeri" class="section">
+  <h2 class="section-title">Galeri</h2>
+
+  <div class="gallery">
+
+    <div class="gallery-card">
+      <img src="gallery 4.jpg" alt="Galeri 1">
+      <p></p>
+    </div>
+
+    <div class="gallery-card">
+      <img src="gallery 6.jpg" alt="Galeri 2">
+      <p></p>
+    </div>
+
+    <div class="gallery-card">
+      <img src="gallery 7.jpg" alt="Galeri 3">
+      <p></p>
+    </div>
+
+    <div class="gallery-card">
+      <img src="gallery 8.jpg" alt="Galeri 4">
+      <p></p>
+    </div>
+
+    <div class="gallery-card">
+      <img src="gallery 9.jpg" alt="Galeri 5">
+      <p></p>
+    </div>
+
+    <div class="gallery-card">
+      <img src="gallery 10.jpg" alt="Galeri 6">
+      <p></p>
+    </div>
+
+    <div class="gallery-card">
+      <img src="gallery 11.jpg" alt="Galeri 7">
+      <p></p>
+    </div>
+
+    <div class="gallery-card">
+      <img src="gallery 12.jpg" alt="Galeri 8">
+      <p></p>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact" class="section">
+  <h2 class="section-title">Contact</h2>
+
+  <div class="contact-card">
+    <img src="foto profil.jpg" class="contact-avatar" alt="Foto kontak">
+
+    <p class="contact-name">Muhammad Zaki Zahron</p>
+    <p class="contact-address">muhammadzakizahron@gmail.com</p>
+
+    <div class="contact-action">
+      <a href="https://wa.me/6281210485404" target="_blank" class="contact-btn wa">WhatsApp</a>
+      <a href="https://www.instagram.com/muhammad_zakizahron?igsh=eXQ5OTM3YjQ4NHlq" target="_blank" class="contact-btn ig">Instagram</a>
+    </div>
+  </div>
+</section>
+
+<script>
+  /* Efek Section Muncul Saat Scroll */
+  const sections = document.querySelectorAll(".section");
+  const reveal = () => {
+    sections.forEach(sec=>{
+      const top = sec.getBoundingClientRect().top;
+      if(top < window.innerHeight - 120) sec.classList.add("show");
+    });
+  };
+  reveal();
+  window.addEventListener("scroll", reveal);
+</script>
+
+</body>
+</html>
